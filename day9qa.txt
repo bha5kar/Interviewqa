@@ -1,0 +1,446 @@
+You're doing great! Here's a review of your **Linux (Day 9)** answers with corrections, clarifications, and additions for full understanding:
+
+---
+
+### ✅ **Linux – Day 9 Answers (with review)**
+
+1. **What does the `df -h` command show?**
+   ✅ Correct
+   📌 Shows disk space usage in a **human-readable format** (e.g., GB/MB).
+
+2. **How do you search for a specific string in a file?**
+   ✅ Works
+   🔍 Better: `grep "string" file.txt` (more direct than piping `cat`)
+
+3. **Difference between `/etc/passwd` and `/etc/shadow`?**
+   ✅ Good
+
+   * `/etc/passwd` contains **user account information** (username, UID, GID, shell).
+   * `/etc/shadow` stores **hashed passwords** and is readable only by root.
+
+4. **How do you find the number of files in a directory?**
+   ⚠️ `wc -l` alone won’t work.
+   ✅ Better: `ls -1 | wc -l` (list files line by line and count)
+
+5. **What does `top` show? How is it different from `htop`?**
+   ✅ Correct
+
+   * `top`: real-time CPU, memory, and process info
+   * `htop`: improved UI, mouse support, can **kill/sort** interactively
+
+6. **Create a new group and add a user to it?**
+   ⚠️ Minor error
+   ✅ Correct usage:
+
+   ```bash
+   groupadd newgroup
+   usermod -aG newgroup username   # Use -aG (append to groups)
+   ```
+
+7. **Difference between `cron` and `at`?**
+   ✅ Partial
+
+   * `cron`: schedules **recurring tasks**
+   * `at`: schedules a **one-time task**
+
+8. **How do you give sudo access to a user temporarily?**
+   ❌ Not answered
+   ✅ You can:
+
+   * Add to `sudo` group: `usermod -aG sudo username`
+   * Or use `sudoers` file with `visudo` and a temporary entry.
+
+9. **What does `uname -a` do?**
+   ✅ Correct
+   📌 Outputs kernel name, hostname, version, architecture, etc.
+
+10. **How to archive and compress a directory?**
+    ❌ Incorrect order of options
+    ✅ Correct:
+
+```bash
+tar -czvf archive.tar.gz folder_name
+```
+
+* `c`: create, `z`: gzip, `v`: verbose, `f`: file name
+
+---
+
+Would you like to proceed with the **next topic (Git/GitHub)** or go over anything again?
+You're doing well — your Git knowledge is developing strongly! Here's feedback and corrections for your **Day 9 Git & GitHub** answers:
+
+---
+
+### ✅ **Git & GitHub – Day 9 Answers (with review)**
+
+1. **What is the difference between `git reset` and `git revert`?**
+   ⚠️ Your answer combines too many ideas, let's split clearly:
+
+   * `git reset` **undoes commits**, moves the branch pointer backward. Can keep or discard working changes (depending on flags).
+
+     * `--soft`: keep changes staged
+     * `--mixed`: keep changes unstaged
+     * `--hard`: discard changes
+   * `git revert` **creates a new commit** that undoes a previous commit (safe for shared branches).
+
+2. **How do you squash commits in Git?**
+   ❌ Not answered
+   ✅ Example:
+
+   ```bash
+   git rebase -i HEAD~n  # n is number of commits to squash
+   ```
+
+   Then mark as `squash` or `fixup` in the interactive editor.
+
+3. **What is `.gitkeep` and when do you use it?**
+   ✅
+
+   * Git doesn’t track empty folders. `.gitkeep` is a **placeholder file** to force Git to keep an otherwise empty directory.
+
+4. **How do you set a remote repository URL?**
+   ❌ Not answered
+   ✅
+
+   ```bash
+   git remote add origin <url>     # for new remote  
+   git remote set-url origin <url> # for existing remote  
+   ```
+
+5. **How do you resolve a fast-forward merge?**
+   ❌ Not answered
+   ✅ It happens when no divergent history exists. Git just moves the branch pointer forward.
+
+   * You can disable it with `--no-ff` if you want a merge commit:
+
+     ```bash
+     git merge --no-ff feature
+     ```
+
+6. **What is a rebase, and how is it different from a merge?**
+   ⚠️ Not answered
+   ✅
+
+   * `merge`: combines histories, keeps all commit history.
+   * `rebase`: rewrites commits from one branch onto another (cleaner history).
+
+     ```bash
+     git rebase main
+     ```
+
+7. **How do you tag a commit and push it?**
+   ❌ Not answered
+   ✅
+
+   ```bash
+   git tag v1.0  
+   git push origin v1.0  
+   ```
+
+8. **How do you remove a file from Git but not delete it from the filesystem?**
+   ❌ Not answered
+   ✅
+
+   ```bash
+   git rm --cached filename
+   ```
+
+9. **What is `git cherry-pick` used for?**
+   ✅ Correct
+   📌 Apply a specific commit from another branch into your current branch.
+
+   ```bash
+   git cherry-pick <commit-hash>
+   ```
+
+10. **How can you see the history of changes for a specific file?**
+    ❌ Not answered
+    ✅
+
+```bash
+git log filename
+```
+
+---
+
+Let me know when you’re ready to continue with **Docker**, or if you want to revise any part of Git.
+Nice work continuing the momentum! Let’s go through your **Docker – Day 9** answers with corrections and explanations to solidify the concepts:
+
+---
+
+### 🐳 **Docker – Day 9 Answers (with review)**
+
+1. **What is the default Docker network mode?**
+   ✅ Correct
+
+   * It’s **`bridge`** (for standalone containers). On Docker Desktop, it's `nat` (on Windows).
+
+2. **How do you connect a container to a specific user-defined bridge network?**
+   ❌ Not answered
+   ✅ Steps:
+
+   ```bash
+   docker network create mynet
+   docker run -dit --name cont1 --network mynet alpine
+   ```
+
+3. **What’s the difference between `COPY` and `ADD` in Dockerfile?**
+   ⚠️ Needs clarification
+
+   * `COPY`: copies files from host into the image (simple and predictable)
+   * `ADD`: like `COPY` **but also** supports:
+
+     * extracting tar archives
+     * downloading files from URLs
+
+4. **How do you pass environment variables into a Docker container?**
+   ❌ Not answered
+   ✅ During container run:
+
+   ```bash
+   docker run -e MY_VAR=value myimage
+   ```
+
+5. **What does `docker inspect` do?**
+   ✅ Correct
+
+   * Outputs detailed JSON about container/image (network, mounts, etc.)
+
+6. **How do you set a restart policy for a container?**
+   ❌ Not answered
+   ✅ Example:
+
+   ```bash
+   docker run --restart=always myimage
+   ```
+
+   Common policies: `no`, `on-failure`, `always`, `unless-stopped`
+
+7. **What is a multi-stage build in Docker?**
+   ❌ Not answered
+   ✅ Technique to reduce image size by **building in one stage and copying artifacts into a minimal final stage**.
+   Useful for Go, Node.js, Python apps etc.
+
+8. **How do you limit CPU and memory usage for a container?**
+   ❌ Not answered
+   ✅ Example:
+
+   ```bash
+   docker run --memory="512m" --cpus="1.5" myimage
+   ```
+
+9. **What’s the difference between `docker-compose up` and `docker-compose up --build`?**
+   ✅ Partial
+
+   * `up`: starts containers using existing images
+   * `--build`: **forces a rebuild** of the images before starting
+
+10. **What is the lifecycle of a Docker container?**
+    ❌ Not answered
+    ✅ Lifecycle stages:
+
+* Created → Running → Stopped → (Optional: Restarted/Removed)
+
+---
+
+You're grasping Docker very well — just a few more areas to fill in. Ready to move on to **Ansible** now?
+You're doing quite well with Ansible fundamentals — let’s walk through your answers and clarify where needed:
+
+---
+
+### 🛠️ **Ansible – Day 9 Answers (with review)**
+
+1. **What is the difference between `hosts` and `inventory` in Ansible?**
+   ✅ Good
+
+   * `hosts`: Specifies the **target group or host** inside a playbook
+   * `inventory`: The actual **file or list** where all managed nodes and their groups are defined (e.g., `inventory.ini` or dynamic inventory)
+
+2. **How do you include a task file in your playbook?**
+   ❌ Not answered
+   ✅
+
+   ```yaml
+   - name: Include tasks
+     include_tasks: tasks.yml
+   ```
+
+3. **What does `gather_facts: false` do?**
+   ✅ Correct
+   📌 Skips the automatic collection of system facts by the `setup` module (can speed up execution).
+
+4. **How can you force handlers to run immediately?**
+   ❌ Not answered
+   ✅ Use `meta: flush_handlers`
+
+   ```yaml
+   - meta: flush_handlers
+   ```
+
+5. **How do you use a variable inside a loop?**
+   ✅ Partial
+   Example:
+
+   ```yaml
+   vars:
+     users:
+       - alice
+       - bob
+
+   tasks:
+     - name: create user
+       user:
+         name: "{{ item }}"
+       loop: "{{ users }}"
+   ```
+
+6. **What’s the difference between `include_tasks` and `import_tasks`?**
+   ❌ Not answered
+   ✅
+
+   * `import_tasks`: **statically** includes tasks at parse time
+   * `include_tasks`: **dynamically** includes tasks at runtime (can use conditionals)
+
+7. **How do you run a playbook against a single host?**
+   ✅ Partial
+   Example:
+
+   ```yaml
+   hosts: node1
+   ```
+
+   Or use `--limit node1` when running the playbook:
+
+   ```bash
+   ansible-playbook play.yml --limit node1
+   ```
+
+8. **What is an Ansible role and when do you use it?**
+   ❌ Not answered
+   ✅ A **role** is a way to group tasks, variables, handlers, and files in a reusable, structured format.
+   Used for **modularizing** playbooks (e.g., `nginx` setup as a role).
+
+9. **How do you skip a task based on a variable?**
+   ✅ Correct
+   Example:
+
+   ```yaml
+   when: my_var == "yes"
+   ```
+
+10. **What is the order of precedence for variables in Ansible?**
+    ✅ Partial
+    📌 Highest to lowest (simplified):
+
+* **Extra vars (CLI)**
+* Task vars
+* Block vars
+* Role vars
+* Inventory vars
+* Default vars
+
+(Full order is longer, but this covers what you need for now)
+
+---
+
+Ready for the **GitHub Actions** section next?
+You're progressing well with GitHub Actions! Let’s go through your **Day 9 GitHub Actions answers** with corrections and extra context:
+
+---
+
+### ⚙️ **GitHub Actions – Day 9 Answers (with review)**
+
+1. **How do you manually trigger a workflow?**
+   ✅ Correct
+
+   * Use `workflow_dispatch:` under `on:`
+
+   ```yaml
+   on:
+     workflow_dispatch:
+   ```
+
+2. **How do you define multiple jobs in one workflow?**
+   ✅ Correct
+
+   * In the `jobs:` block, define multiple jobs as siblings:
+
+   ```yaml
+   jobs:
+     job1:
+       ...
+     job2:
+       ...
+   ```
+
+3. **How do you use an external action from the marketplace?**
+   ✅ Correct format
+   Example:
+
+   ```yaml
+   uses: actions/setup-node@v3
+   ```
+
+4. **How do you conditionally run a step based on the result of another?**
+   ❌ Not answered
+   ✅ Use `if:` condition with `success()` or `failure()`:
+
+   ```yaml
+   if: success()
+   if: failure()
+   ```
+
+5. **What is the difference between `GITHUB_ENV` and inline `env`?**
+   ⚠️ Needs correction
+
+   * `GITHUB_ENV`: sets **persistent environment variables** across steps **within the same job**.
+     You write to it like:
+
+     ```bash
+     echo "MY_VAR=hello" >> $GITHUB_ENV
+     ```
+   * `env:` (inline): defines **temporary env vars** for **that specific step** or job.
+
+6. **Can you store artifacts between jobs? How?**
+   ✅ Correct
+
+   * Use `actions/upload-artifact` and `actions/download-artifact`:
+
+   ```yaml
+   - uses: actions/upload-artifact@v4
+     with:
+       name: my-artifact
+       path: output.txt
+   ```
+
+7. **What is a self-hosted runner?**
+   ✅ Correct
+
+   * Your own physical or cloud machine to run GitHub Actions jobs.
+
+8. **How do you debug a failing GitHub Action?**
+   ⚠️ Partial
+   ✅ You can:
+
+   * Set: `ACTIONS_STEP_DEBUG=true` in **Secrets**
+   * Use `run: echo` and `set -x` in shell scripts for inline debugging
+
+9. **How can you cache dependencies in GitHub Actions?**
+   ❌ Not answered
+   ✅ Use `actions/cache`:
+
+   ```yaml
+   - uses: actions/cache@v4
+     with:
+       path: ~/.npm
+       key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+   ```
+
+10. **What does `if: github.event_name == 'push'` do?**
+    ✅ Correct
+
+* Conditionally runs that job/step **only** when the event is a `push`.
+
+---
+
+📌 Would you like to move on to today's **Day 9 practicals** now, or review any part again?

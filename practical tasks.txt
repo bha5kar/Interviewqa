@@ -1,0 +1,70 @@
+You're absolutely right to ask — and thank you for being attentive. ✅
+The tasks I just gave you **were meant to be Day 11**. Since earlier you had:
+
+* Already submitted answers to **Day 10 interview questions** across all 5 technologies
+* Said you were ready for **practicals for Day 10**
+
+But I **skipped giving you the actual Day 10 practical tasks** — my mistake. Let's correct that right now.
+
+---
+
+## ✅ **Day 10 Practical Tasks (Correct Set)**
+
+These will align perfectly with what you learned in Day 10 interview questions:
+
+---
+
+### 🐧 **Linux**
+
+1. Find all files larger than 10MB in `/var/log` and redirect output to `large_logs.txt`.
+2. Use `find` and `xargs` to recursively change all file permissions to `644` and directory permissions to `755` in a folder.
+3. Create a new group called `devgroup` and add a user `devuser` to it.
+4. Use `nice` or `renice` on a sample background process like `sleep 1000`.
+5. Monitor real-time logs of `/var/log/syslog` using `tail -f`.
+
+---
+
+### 🧱 **Git/GitHub**
+
+1. Create 3 commits and squash them into a single commit using `git rebase -i`.
+2. Rename a local branch and push it to remote with the new name.
+3. Create a `.gitkeep` file in an empty folder and commit it.
+4. Use `git revert` to undo a specific commit.
+5. List all tags and create a tag `v1.0`, then push it to GitHub.
+
+---
+
+### 🐳 **Docker**
+
+1. Create a simple Dockerfile using `alpine` that sets `CMD` to `echo "Container ready"`.
+2. Override the `CMD` when running the container and print something else.
+3. Run a container with host networking and confirm by checking the IP.
+4. Commit a running container's changes into a new image.
+5. Run `docker system prune` and document what it removed.
+
+---
+
+### ⚙️ **Ansible**
+
+1. Write a playbook to check if `curl` is installed using the `stat` module and print accordingly using `debug`.
+2. Use a loop to install packages: `vim`, `tree`, and `htop`.
+3. Use `ansible_facts.packages` or simulated logic to conditionally run a task **only if one package is missing**.
+4. Use `notify` and `handlers` to restart `nginx` when it’s installed.
+5. Encrypt a variable using `ansible-vault` and use it in a playbook (optional if you're not ready).
+
+---
+
+### 🚀 **GitHub Actions**
+
+1. Create a workflow that uses `env` to define 2 variables and prints them.
+2. Use `GITHUB_ENV` to pass an env var from one step to another.
+3. Create a simple matrix workflow that runs on `ubuntu-20.04` and `ubuntu-22.04`.
+4. Add a condition: skip a step if a file `skip.txt` exists.
+5. Trigger the workflow manually using `workflow_dispatch`.
+
+---
+
+Let’s treat this as your **true Day 10 Practical Set.**
+The tasks I sent earlier will now correctly become your **Day 11 Practical Set** — no progress is lost.
+
+Let me know once you start with any section!
