@@ -1,0 +1,171 @@
+## Day 11 DevOps Interview Questions and Answers
+
+---
+
+### 🐧 Linux
+
+1. **How do you find the largest directories in the root filesystem?**
+   `du -h / --max-depth=1 | sort -hr | head -n 10`
+
+2. **What does the `/proc` directory contain?**
+   It contains virtual files that represent the system and process information.
+
+3. **How do you clean up old log files automatically?**
+   Use `logrotate` or a cron job with `find /var/log -name "*.log" -mtime +7 -delete`
+
+4. **What does `df` show and how is it different from `du`?**
+   `df` shows disk space usage by file system, `du` shows disk usage by file or directory.
+
+5. **How do you check memory usage in human-readable format?**
+   `free -h`
+
+6. **What is `lsof` used for?**
+   Lists open files and shows which processes are using which files.
+
+7. **How do you kill all processes of a particular user?**
+   `pkill -u username`
+
+8. **How do you schedule a one-time task with `at`?**
+   Use `echo "command" | at now + 10 minutes`
+
+9. **What is the difference between `/tmp` and `/var/tmp`?**
+   `/tmp` is cleared on reboot, `/var/tmp` persists across reboots.
+
+10. **How do you monitor a directory for changes?**
+    Use `inotifywait -m /path/to/dir`
+
+---
+
+### 🧱 Git/GitHub
+
+1. **How do you clean untracked files and directories?**
+   `git clean -fd`
+
+2. **How do you revert to a previous commit and discard all later changes?**
+   `git reset --hard <commit-hash>`
+
+3. **How do you compare two branches in Git?**
+   `git diff branch1..branch2`
+
+4. **What is HEAD, HEAD\~1, and HEAD^?**
+   HEAD is the latest commit, HEAD\~1 is one commit before, HEAD^ is also one commit before HEAD.
+
+5. **How do you rename a remote in Git?**
+   `git remote rename oldname newname`
+
+6. **What is `git reflog` used for?**
+   Shows history of HEAD and branch updates.
+
+7. **How do you see commits affecting a specific file?**
+   `git log -- <file>`
+
+8. **What is `git gc` and when is it used?**
+   Performs garbage collection to optimize the repo.
+
+9. **What does `git blame` do?**
+   Shows line-by-line commit history for a file.
+
+10. **How do you squash commits during a merge?**
+    Use `git merge --squash branch-name`
+
+---
+
+### 🐳 Docker
+
+1. **How do you find out which image a container was created from?**
+   `docker ps` or `docker inspect <container-id>`
+
+2. **What is the difference between `docker run` and `docker start`?**
+   `run` creates and starts a new container, `start` starts a stopped container.
+
+3. **How do you mount a host directory into a container?**
+   `docker run -v /host/path:/container/path ...`
+
+4. **What are Docker labels and how do you use them?**
+   Metadata key-value pairs added using `LABEL` in Dockerfile.
+
+5. **How do you run a container in interactive mode with a shell?**
+   `docker run -it --name mycontainer image-name /bin/bash`
+
+6. **How do you pull a specific image version?**
+   `docker pull image:version`
+
+7. **How do you manage Docker image layers effectively?**
+   Combine `RUN` commands, use `.dockerignore` to avoid copying unneeded files.
+
+8. **What is the difference between `docker pause` and `docker stop`?**
+   `pause` suspends processes, `stop` gracefully stops the container.
+
+9. **What are Docker logging drivers?**
+   Mechanisms for logging container output, like `json-file`, `syslog`, etc.
+
+10. **What is a Docker manifest?**
+    A file describing multi-architecture image variants.
+
+---
+
+### ⚙️ Ansible
+
+1. **What is the difference between `command` and `shell` module?**
+   `command` does not process shell features, `shell` does.
+
+2. **How do you pass variables from the command line?**
+   Use `-e VAR=value`
+
+3. **What is `register` and how is it used?**
+   Captures the result of a task into a variable.
+
+4. **What are handlers in Ansible?**
+   Special tasks triggered by `notify` only when a change occurs.
+
+5. **How do you loop over a dictionary in Ansible?**
+   Use `with_dict` or `loop: "{{ mydict | dict2items }}"`
+
+6. **What is the difference between `vars` and `defaults` in roles?**
+   `vars` override everything, `defaults` have the lowest precedence.
+
+7. **How do you use `ansible.builtin.set_fact`?**
+   It sets a variable during playbook execution.
+
+8. **What is the purpose of `delegate_to`?**
+   Runs a task on a different host than the one in the play.
+
+9. **How do you retry a failed task?**
+   Use `retries` and `delay` with `until`.
+
+10. **How do you run ad-hoc commands on multiple hosts?**
+    `ansible all -m module_name -a "args"`
+
+---
+
+### 🚀 GitHub Actions
+
+1. **How do you pass an output from one step to another?**
+   Use `id` and `outputs` with `${{ steps.id.output_name }}`
+
+2. **What are reusable workflows and how do you call them?**
+   Use `workflow_call` in a separate file and call with `uses: org/repo/.github/workflows/file.yml@branch`
+
+3. **How do you define a matrix job with multiple versions of Node.js?**
+   Use `strategy: matrix: node: [14, 16, 18]`
+
+4. **What is the role of `default` in GitHub Actions?**
+   Sets default shell, working-directory, etc. for steps.
+
+5. **How do you define a custom shell in a step?**
+   Use `shell: bash` or any supported shell.
+
+6. **What are the different types of contexts in GitHub Actions?**
+   `github`, `env`, `job`, `steps`, `runner`, `secrets`, etc.
+
+7. **How do you write conditional expressions in workflows?**
+   Using `if:` keyword with expressions like `if: github.event_name == 'push'`
+
+8. **What is `GITHUB_WORKSPACE` and when is it used?**
+   Directory where your code is checked out in the runner.
+
+9. **How do you store data between workflow runs?**
+   Use `upload-artifact` and `download-artifact` actions.
+
+10. **How do you cancel a workflow from within itself?**
+    Use `actions/github-script` to call the GitHub API and cancel the workflow run.
