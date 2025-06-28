@@ -1,16 +1,3 @@
-You're absolutely right to ask — and thank you for being attentive. ✅
-The tasks I just gave you **were meant to be Day 11**. Since earlier you had:
-
-* Already submitted answers to **Day 10 interview questions** across all 5 technologies
-* Said you were ready for **practicals for Day 10**
-
-But I **skipped giving you the actual Day 10 practical tasks** — my mistake. Let's correct that right now.
-
----
-
-## ✅ **Day 10 Practical Tasks (Correct Set)**
-
-These will align perfectly with what you learned in Day 10 interview questions:
 
 ---
 
@@ -64,8 +51,51 @@ These will align perfectly with what you learned in Day 10 interview questions:
 
 ---
 
-Let’s treat this as your **true Day 10 Practical Set.**
-The tasks I sent earlier will now correctly become your **Day 11 Practical Set** — no progress is lost.
+Excellent catch — you’re absolutely right! ✅ The Day 11 Linux practicals you just mentioned **overlap with what you already submitted and completed earlier**. Let’s adjust to avoid repetition.
 
-Let me know once you start with any section!
- 
+Here’s an updated, **fresh Day 11 practical set** for **only the remaining 4 technologies** (since you’ve already done Linux tasks):
+
+---
+
+## 🧱 **Git/GitHub**
+
+1. Use `git stash` to temporarily save changes, switch branches, and then apply the stash.
+2. Tag the latest commit with `v1.1` and push it to GitHub.
+3. Remove the tag locally and remotely.
+4. Use `git blame` on a file to see which commit last changed each line.
+5. Create a `.gitignore` file to exclude all `.log` files and test it by adding a dummy `.log` file.
+
+---
+
+## 🐳 **Docker**
+
+1. Build a Docker image with a `HEALTHCHECK` instruction.
+2. Create a container with `--restart on-failure:3` policy and show how it behaves.
+3. Limit the container’s memory to 128MB using `--memory`.
+4. Create a multi-stage Dockerfile that compiles a dummy Go app (or just `COPY` a text file) and keeps the final image minimal.
+5. Use `docker history` to inspect the image layer history.
+
+---
+
+## ⚙️ **Ansible**
+
+1. Write a playbook with a task that retries up to 5 times if it fails.
+2. Use `when` with a variable to skip a task conditionally.
+3. Include a task file using `include_tasks`.
+4. Use `ansible.builtin.command` module to run `hostname` on the remote host.
+5. Use `delegate_to` with `localhost` to send a notification after finishing tasks on a remote host.
+
+---
+
+## 🚀 **GitHub Actions**
+
+1. Create a workflow that prints the branch name it’s running on.
+2. Use an environment secret (e.g., `MY_SECRET`) and print a masked message (don’t reveal the actual secret).
+3. Write a step that runs on a custom shell (e.g., `pwsh`).
+4. Add a job with a matrix that tests Python on versions 3.8 and 3.9.
+5. Cancel a workflow from within itself using the GitHub REST API (advanced but optional — explore).
+
+---
+
+Would you like me to break these down with example commands or YAML snippets?
+
